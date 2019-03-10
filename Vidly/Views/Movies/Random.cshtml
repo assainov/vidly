@@ -1,0 +1,28 @@
+﻿@*Include Movie model directory to use its prop passed from directory*@
+@model Vidly.View_Models.RandomMovieViewModel
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*Accessing Name property of the movie that was passed from MovieController*@
+
+@{ 
+    var className = Model.Customers.Count > 1 ? "popular" : null;
+}
+<h2 class="@className">@Model.Movie.Name</h2>
+
+@*Using customers in a view*@
+@if (Model.Customers.Count == 0)
+{
+    <p>No one has rented this movie.</p>
+}
+else
+{
+    <ul>
+        @foreach (var customer in Model.Customers)
+        {
+            <li>@customer.Name</li>
+        }
+    </ul>
+}
